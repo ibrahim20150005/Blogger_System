@@ -6,7 +6,7 @@ the project by asp.net mvc 5
 
 the steps for bulid the project
 
-1-create the database from tables (user,user Role,comment,article,category) in my sql.
+1-create the database from tables (user,user Role,comment,article,category) in my sql Server.
 
 2-then connect the database after create project
 
