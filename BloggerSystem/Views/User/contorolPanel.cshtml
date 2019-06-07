@@ -1,0 +1,41 @@
+﻿@model IEnumerable<BloggerSystem.Models.Article>
+
+@{
+    ViewBag.Title = "contorolPanel";
+}
+
+<h2>contorolPanel</h2>
+
+<p>
+    @Html.ActionLink("Create New Article", "Create","Article")
+    <br />
+    @Html.ActionLink("Add New Category", "AddCategory", "User")
+</p>
+@if (Model != null) {
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit","Article", new { id = item.ArticleID },null) |
+                @Html.ActionLink("Details", "Details", "Article", new { id = item.ArticleID },null) |
+                @Html.ActionLink("Delete", "Delete", "Article", new { id = item.ArticleID }, null)
+            </td>
+        </tr>
+}
+</table>
+}
+else
+{
+    <p style="text-align:center">Not Found Article</p>
+}

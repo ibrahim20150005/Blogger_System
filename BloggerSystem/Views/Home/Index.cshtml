@@ -1,0 +1,70 @@
+﻿@model BloggerSystem.CustomView.CategoreyArticleModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="col-lg-10">
+        @if (Model != null)
+        {
+            <table class="table">
+
+                @foreach (var item in Model.articleList )
+                {
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            <div class="summary text">@item.Context</div>
+                            @Html.ActionLink("more", "Details", new { id = item.ArticleID })
+
+                        </td>
+                    </tr>
+
+                }
+
+
+            </table>
+        }
+        else
+        {
+            <h3> Not Found Articles</h3>
+        }
+    </div>
+    <div class="col-lg-2">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group">
+                @Html.LabelFor(m => m.category.CategoryID, "Category")
+                @Html.DropDownListFor(m => m.category.CategoryID, new SelectList(Model.categoryList, "CategoryID", "TypeCategory"), "- select Category -", new { @class = "form-control"})
+                @Html.ValidationMessageFor(m => m.category.CategoryID)
+            </div>
+            <button type="submit" class="btn btn-success submit">Search</button>
+        }
+  
+    </div>
+</div>
+
+     <style>
+            .summary {
+                width: 400px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
+        <script>
+            $('a').click(function () {
+                var text = $(this).prev('.text');
+                text.toggleClass('summary');
+                if (text.hasClass('summary')) {
+                    $(this).text('more');
+                } else {
+                    $(this).text('less');
+                }
+            });
+
+        </script>
